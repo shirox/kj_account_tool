@@ -4,11 +4,11 @@ class Config {
 
       public static function databaseConnection() {
       	     return [
-	     	    "host"	=> "shirox",
-	     	    "port"	=> "22",
-	     	    "username"	=> "shirox",
-	     	    "password"	=> "shirox",
-	     	    "dbname"	=> "shirox",
+	     	    "host"	=> "localhost",
+	     	    "port"	=> "3306",
+	     	    "username"	=> "root",
+	     	    "password"	=> "",
+	     	    "dbname"	=> "kojima",
 	     ];
       }
 
@@ -25,5 +25,9 @@ class Config {
 
       public static function getS3BucketName() {
       	     return "kojima";
+      }
+
+      public static function getTemplatesPath() {
+      	     return "/views/";
       }
 }
