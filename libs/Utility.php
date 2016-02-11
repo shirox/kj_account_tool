@@ -33,7 +33,7 @@ class Utility {
     public static function getTemplateEngine($templatesPath) {
         $view = new \Phalcon\Mvc\View();
         $view->setViewsDir($templatesPath);
-        $view->registerEngines([".html" => "Phalcon\Mvc\View\Engine\Volt"]);
+        $view->registerEngines([".volt" => "Phalcon\Mvc\View\Engine\Volt"]);
         return $view;
     }
 

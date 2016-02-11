@@ -27,7 +27,4 @@ class Config {
       	     return "kojima";
       }
 
-      public static function getTemplatesPath() {
-      	     return "/views/";
-      }
 }
