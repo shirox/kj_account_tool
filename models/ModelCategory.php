@@ -36,11 +36,4 @@ class ModelCategory extends \Phalcon\Mvc\Model {
         return $this->order_num;
     }
 
-
-    public function getCategoryList(){
-        
-        return $this->find();
-    }
-
-
 }

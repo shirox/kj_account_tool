@@ -6,13 +6,30 @@ class CategoryController extends BaseController {
         
     }
 
-    public function ListAction(){
+    public function listAction(){
 
-        $category = new ServiceCategory();
+        try {
 
-        $categoryList = $category->getList();
+            $serviceCategory = new ServiceCategory();
+        
+            $categoryList = $serviceCategory->getListAll();
 
-        $this->view->categoryList = $categoryList;
+            $this->view->categoryList = $categoryList;
+
+        } catch (Exception $e) {
+            
+            Log::output(LOG_LEVEL_CRITICAL, "Category list controller error.", $e);
+        }
+    }
+
+    public function detailAction(){
+
+        $serviceCategory = new ServiceCategory();
+
+        $categoryDetail = $category->getDetail();
+        
+        $this->view->categoryDetail = $categoryDetail;
 
     }
+
 }

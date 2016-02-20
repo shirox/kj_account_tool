@@ -1,15 +1,29 @@
 {% extends "layout.volt" %}
+
 {% block content %}
-<li>Category List</li>
 
-<table border=1>
-<tr><th>id</th><th>name</th><th>order_num</th></tr>
+<table class="table">
 
-{% for category in categoryList %}
+  <tr>
+    <th>分類番号</th>
+    <th>勘定科目名称</th>
+    <th>表示優先度</th>
+    <th>項目操作</th>
+  </tr>
 
-<tr><td>{{ category.id }}</td><td>{{ category.name }}</td><td>{{ category.order_num }}</td></tr>
+  {% for category in categoryList %}
 
-{% endfor %}
+  <tr>
+    <td>{{ category.id }}</td>
+    <td>{{ category.name }}</td>
+    <td>{{ category.order_num }}</td>
+    <td>
+      <a href="/category/detail/{{ category.id }}">編集</a>
+    </td>
+  </tr>
+
+  {% endfor %}
 
 </table>
+
 {% endblock %}

@@ -1,35 +1,39 @@
 <?php
 
-class ServiceCategory extends ModelCategory {
+class ServiceCategory {
 
-    public function getList(){
+    public function getListAll(){
 
         try {
 
-            $modelCategoryList = $this->getCategoryList();
+            $categoryList = ModelCategory::find();
 
-            /*
-              foreach ($categoryList as $category) {
-            
-              $this->view->dbg .= print_r($category->getId(),true);
-              $this->view->dbg .= print_r($category->getName(),true);
-              $this->view->dbg .= print_r($category->getOrderNum(),true);
-              }
-            */
-
-            return $modelCategoryList;
+            return $categoryList;
 
         } catch (Exception $e) {
             
-            var_dump($e);
-
+            Log::output(LOG_LEVEL_CRITICAL, "Service category getListAll error.", $e);
         }
 
     }
 
-    public function updateCategoryList(){}
-    public function deleteCategoryList(){}
-    public function createCategoryList(){}
+    public function getDetail($categoryId){
 
+        try {
+
+            $param = [
+                "id" => $categoryId,
+            ];
+
+            $categoryDetail = ModelCategory::find($param);
+
+            return $categoryDetail;
+
+        } catch (Exception $e) {
+            
+            Log::output(LOG_LEVEL_CRITICAL, "Service category getDetail error.", $e);
+        }
+
+    }
 
 }
