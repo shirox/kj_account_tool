@@ -31,9 +31,19 @@ class Utility {
     }
 
     public static function getTemplateEngine($templatesPath) {
+
         $view = new \Phalcon\Mvc\View();
         $view->setViewsDir($templatesPath);
-        $view->registerEngines([".volt" => "Phalcon\Mvc\View\Engine\Volt"]);
+        $view->registerEngines([
+            ".volt" => function($view) {
+                $volt = new \Phalcon\Mvc\View\Engine\Volt($view);
+                $volt->setOptions([
+                    'compileAlways' => TEMPLATE_COMPILE_ALWAYS,
+                ]);
+                return $volt;
+            }
+        ]);
+
         return $view;
     }
 

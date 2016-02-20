@@ -1,8 +1,9 @@
 <?php
 
-class IndexController extends \Phalcon\Mvc\Controller{
+class IndexController extends BaseController{
 
     public function indexAction(){
+
 
     }
 }
