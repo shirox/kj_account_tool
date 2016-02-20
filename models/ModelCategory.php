@@ -3,9 +3,7 @@
 class ModelCategory extends \Phalcon\Mvc\Model {
 
     protected $id;
-
     protected $name;
-
     protected $order_num;
 
     public function initialize(){
@@ -38,6 +36,11 @@ class ModelCategory extends \Phalcon\Mvc\Model {
         return $this->order_num;
     }
 
+
+    public function getCategoryList(){
+        
+        return $this->find();
+    }
 
 
 }

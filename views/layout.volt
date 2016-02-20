@@ -38,6 +38,8 @@
 
     <div id="main" class="container">
 
+      {{ debug }}
+
       {% block content %}{% endblock %}
 
 

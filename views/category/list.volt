@@ -1,3 +1,5 @@
+{% extends "layout.volt" %}
+{% block content %}
 <li>Category List</li>
 
 <table border=1>
@@ -10,3 +12,4 @@
 {% endfor %}
 
 </table>
+{% endblock %}
