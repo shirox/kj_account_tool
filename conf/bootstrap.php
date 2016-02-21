@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('Asia/Tokyo');
+
 $loader = new \Phalcon\Loader();
 $loader->registerDirs([
     '../controllers/',
@@ -21,6 +23,10 @@ $di->set(TEMPLATE_ENGINE_DI_KEY, function() {
 $databaseConnection = Config::databaseConnection();
 $di->set(DBCONNECTION_DI_KEY, function() use ($databaseConnection) {
     return Utility::getDatabaseConnection($databaseConnection);
+});
+
+$di->set(HTTP_RESPONSE_DI_KEY, function(){
+    return new \Phalcon\Http\Response();
 });
 
 $app = new \Phalcon\Mvc\Application($di);

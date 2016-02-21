@@ -1,11 +1,12 @@
 <?php
 
-// DI
+// DI Container
 define("DBCONNECTION_DI_KEY", "db");
 define("TEMPLATE_ENGINE_DI_KEY", "view");
+define("HTTP_RESPONSE_DI_KEY", "http");
 
 // Database
-define("MAX_CONNECT_TRY_COUNT", 5);
+define("MAX_CONNECT_TRY_COUNT", 1);
 define("CONNECT_TRY_SLEEP_SECONDS", 2);
 
 // Template

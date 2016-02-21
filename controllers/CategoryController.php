@@ -19,6 +19,8 @@ class CategoryController extends BaseController {
         } catch (Exception $e) {
             
             Log::output(LOG_LEVEL_CRITICAL, "Category list controller error.", $e);
+
+            return $this->http->redirect('error');
         }
     }
 

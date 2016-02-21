@@ -11,8 +11,10 @@ class ServiceCategory {
             return $categoryList;
 
         } catch (Exception $e) {
-            
+
             Log::output(LOG_LEVEL_CRITICAL, "Service category getListAll error.", $e);
+
+            throw new Exception();
         }
 
     }

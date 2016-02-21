@@ -2,7 +2,7 @@
 
 class Log{
 
-    public function output($level, $message, $exception=null){
+    public static function output($level, $message, $exception=null){
 
         $logger = new \Phalcon\Logger\Adapter\File(SYSTEM_LOG_PATH);
 
@@ -20,6 +20,11 @@ class Log{
 
         $logger->$level(json_encode($output));
 
+    }
+    
+    public static function debug($target){
+
+        self::output(LOG_LEVEL_DEBUG, $target);
     }
 
 }
