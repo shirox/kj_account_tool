@@ -23,13 +23,16 @@ class ServiceCategory {
 
         try {
 
+            if (!is_numeric($categoryId)) {
+                throw new Exception("Not integer given to categoryId.");
+            }
+
             $param = [
-                "id" => $categoryId,
+                "id = :categoryId:",
+                "bind" => ["categoryId" => $categoryId],
             ];
 
-            $categoryDetail = ModelCategory::find($param);
-
-            return $categoryDetail;
+            return ModelCategory::findFirst($param);
 
         } catch (Exception $e) {
             

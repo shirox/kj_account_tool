@@ -29,5 +29,22 @@ $di->set(HTTP_RESPONSE_DI_KEY, function(){
     return new \Phalcon\Http\Response();
 });
 
+$di->set(HTTP_REQUEST_DI_KEY, function(){
+    return new \Phalcon\Http\Request();
+});
+
+$di->set(SYSTEM_ROUTER_DI_KEY, function(){
+    return new \Phalcon\Mvc\Router(true);
+});
+
+$di[SYSTEM_ROUTER_DI_KEY]->add(
+    "/{controller}/{action}/{number}",
+    [
+        "controller" => 1,
+        "action" => 2,
+        "number" => 3,
+    ]
+);
+
 $app = new \Phalcon\Mvc\Application($di);
 echo $app->handle()->getContent();

@@ -3,7 +3,7 @@
 class CategoryController extends BaseController {
 
     public function indexAction(){
-        
+        return $this->response->redirect('category/list');
     }
 
     public function listAction(){
@@ -18,19 +18,28 @@ class CategoryController extends BaseController {
 
         } catch (Exception $e) {
             
-            Log::output(LOG_LEVEL_CRITICAL, "Category list controller error.", $e);
+            Log::output(LOG_LEVEL_CRITICAL, "Category list error.", $e);
 
-            return $this->http->redirect('error');
+            return $this->response->redirect('error');
         }
     }
 
     public function detailAction(){
 
-        $serviceCategory = new ServiceCategory();
-
-        $categoryDetail = $category->getDetail();
+        try {
         
-        $this->view->categoryDetail = $categoryDetail;
+            $serviceCategory = new ServiceCategory();
+
+            $categoryId = $this->dispatcher->getParam("number");
+
+            $this->view->category = $serviceCategory->getDetail($categoryId);
+
+        } catch(Exception $e) {
+
+            Log::output(LOG_LEVEL_CRITICAL, "Category detail error.", $e);
+
+            return $this->response->redirect('error');
+        }
 
     }
 

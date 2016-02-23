@@ -3,7 +3,9 @@
 // DI Container
 define("DBCONNECTION_DI_KEY", "db");
 define("TEMPLATE_ENGINE_DI_KEY", "view");
-define("HTTP_RESPONSE_DI_KEY", "http");
+define("HTTP_RESPONSE_DI_KEY", "response");
+define("HTTP_REQUEST_DI_KEY", "request");
+define("SYSTEM_ROUTER_DI_KEY", "router");
 
 // Database
 define("MAX_CONNECT_TRY_COUNT", 1);
