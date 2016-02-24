@@ -11,6 +11,12 @@ class ModelCategory extends \Phalcon\Mvc\Model {
         $this->setSource("categories");
     }
 
+    public function setId($id){
+
+        $this->id = $id;
+        return $this;
+    }
+
     public function getId(){
 
         return $this->id;
@@ -19,6 +25,7 @@ class ModelCategory extends \Phalcon\Mvc\Model {
     public function setName($name){
 
         $this->name = $name;
+        return $this;
     }
     
     public function getName(){
@@ -29,6 +36,7 @@ class ModelCategory extends \Phalcon\Mvc\Model {
     public function setOrderNum($num){
 
         $this->order_num = $num;
+        return $this;
     }
     
     public function getOrderNum(){

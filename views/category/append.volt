@@ -2,23 +2,17 @@
 
 {% block content %}
 
-<form class="form-horizontal">
-  <div class="form-group">
-    <label for="inputCategoryId" class="col-sm-2 control-label">分類番号</label>
-    <div class="col-sm-2">
-      {{ category.id }}
-    </div>
-  </div>
+<form class="form-horizontal" action="/category/appendnew" method="post">
   <div class="form-group">
     <label for="inputName" class="col-sm-2 control-label">勘定科目名称</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="inputName" placeholder="勘定科目名称" value="{{ category.name }}">
+      <input type="text" class="form-control" id="inputName" name="categoryName" placeholder="勘定科目名を入力してください">
     </div>
   </div>
   <div class="form-group">
     <label for="inputOrderNum" class="col-sm-2 control-label">表示優先度</label>
     <div class="col-sm-2">
-      <input type="number" class="form-control" id="inputOrderNum" placeholder="表示優先度" value="{{ category.order_num }}">
+      <input type="number" class="form-control" id="inputOrderNum" name="categoryOrderNum" placeholder="1" value="1">
     </div>
   </div>
 

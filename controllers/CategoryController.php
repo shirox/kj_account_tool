@@ -43,4 +43,34 @@ class CategoryController extends BaseController {
 
     }
 
+    public function appendAction(){
+
+    }
+
+    public function appendnewAction(){
+
+        try {
+
+            if (!$this->request->isPost()) {
+                throw new Exception("No post data included.");
+            }
+
+            $registData = [
+                "categoryName" => $this->request->getPost("categoryName"),
+                "categoryOrderNum" => $this->request->getPost("categoryOrderNum"),
+            ];
+
+            $serviceCategory = new ServiceCategory();
+            $serviceCategory->appendCategory($registData);
+
+            $this->response->redirect('category/list');
+
+        } catch(Exception $e) {
+
+            Log::output(LOG_LEVEL_CRITICAL, "Category append new error.", $e);
+
+            return $this->response->redirect('error');
+        }
+    }
+
 }

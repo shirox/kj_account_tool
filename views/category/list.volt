@@ -24,6 +24,13 @@
 
   {% endfor %}
 
+  <tr>
+    <td colspan="3"></td>
+    <td>
+      <a href="/category/append">新規追加</a>
+    </td>
+  </tr>
+
 </table>
 
 {% endblock %}

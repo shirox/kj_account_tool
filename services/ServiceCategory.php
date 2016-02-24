@@ -41,4 +41,24 @@ class ServiceCategory {
 
     }
 
+    public function append(){
+
+    }
+
+    public function appendCategory($registData){
+
+        try {
+
+            $modelCategory = (new ModelCategory())
+                           ->setName($registData['categoryName'])
+                           ->setOrderNum($registData['categoryOrderNum'])
+                           ->save();
+
+        } catch(Exception $e) {
+
+            Log::output(LOG_LEVEL_CRITICAL, "Service append category error.", $e);
+        }
+
+    }
+
 }

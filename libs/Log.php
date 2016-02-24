@@ -4,6 +4,9 @@ class Log{
 
     public static function output($level, $message, $exception=null){
 
+        $errorMessage = "";
+        $stackTrace = "";
+
         $logger = new \Phalcon\Logger\Adapter\File(SYSTEM_LOG_PATH);
 
         if ($exception) {
