@@ -2,6 +2,10 @@
 
 {% block content %}
 
+<a href="javascript:history.back()">
+  <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
+</a>
+
 <form class="form-horizontal">
   <div class="form-group">
     <label for="inputCategoryId" class="col-sm-2 control-label">分類番号</label>
@@ -24,7 +28,7 @@
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-4">
-      <button type="submit" class="btn btn-primary">保存</button>
+      <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span> 保存</button>
     </div>
   </div>
 </form>

@@ -2,6 +2,10 @@
 
 {% block content %}
 
+<a href="javascript:history.back()">
+  <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
+</a>
+
 <form class="form-horizontal" action="/category/appendnew" method="post">
   <div class="form-group">
     <label for="inputName" class="col-sm-2 control-label">勘定科目名称</label>

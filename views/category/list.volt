@@ -18,7 +18,7 @@
     <td>{{ category.name }}</td>
     <td>{{ category.order_num }}</td>
     <td>
-      <a href="/category/detail/{{ category.id }}">編集</a>
+      <a href="/category/detail/{{ category.id }}"><span class="glyphicon glyphicon-edit"></span> 編集</a>
     </td>
   </tr>
 
@@ -27,7 +27,7 @@
   <tr>
     <td colspan="3"></td>
     <td>
-      <a href="/category/append">新規追加</a>
+      <a href="/category/append"><span class="glyphicon glyphicon-share"></span> 新規追加</a>
     </td>
   </tr>
 
