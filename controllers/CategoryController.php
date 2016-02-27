@@ -32,6 +32,8 @@ class CategoryController extends BaseController {
 
             $categoryId = $this->dispatcher->getParam("number");
 
+            Log::debug($categoryId);
+
             $this->view->category = $serviceCategory->getDetail($categoryId);
 
         } catch(Exception $e) {

@@ -2,11 +2,11 @@
 
 class ServiceBill {
 
-    public function getList($offset, $limit){
+    public function getList(){
 
         try {
 
-            $billList = ModelCategory::find(/*offset limit*/);
+            $billList = ModelBillList::find();
 
             return $billList;
 
@@ -19,11 +19,28 @@ class ServiceBill {
 
     }
 
+    public function getData($billListId){
+
+        try {
+
+            $billData = ModelBill::find();
+
+            return $billData;
+
+        } catch (Exception $e) {
+
+            Log::output(LOG_LEVEL_CRITICAL, "Service bill get data error.", $e);
+
+            throw new Exception();
+        }
+
+    }
+
     public function getListByCategoryId($categoryId, $offset, $limit){
 
         try {
 
-            $billList = ModelCategory::find(/*categoryId offset limit*/);
+            $billList = ModelBill::find(/*categoryId offset limit*/);
 
             return $billList;
 
@@ -36,24 +53,24 @@ class ServiceBill {
 
     }
 
-    public function getDetail($billId){
+    public function getDetail($billListId){
 
         try {
 
-            if (!is_numeric($billId)) {
-                throw new Exception("Not integer given to billId.");
+            if (!is_numeric($billListId)) {
+                throw new Exception("Not integer given to billListId.");
             }
 
             $param = [
-                "id = :billId:",
-                "bind" => ["billId" => $billId],
+                "id = :billListId:",
+                "bind" => ["billListId" => $billListId],
             ];
 
-            return ModelBill::findFirst($param);
+            return ModelBill::find($param);
 
         } catch (Exception $e) {
             
-            Log::output(LOG_LEVEL_CRITICAL, "Service bill getDetail error.", $e);
+            Log::output(LOG_LEVEL_CRITICAL, "Service bill list getDetail error.", $e);
         }
 
     }

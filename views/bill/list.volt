@@ -5,31 +5,22 @@
 <table class="table">
 
   <tr>
-    <th>分類番号</th>
-    <th>勘定科目名称</th>
-    <th>表示優先度</th>
-    <th>項目操作</th>
+    <th>リスト番号</th>
+    <th>名称</th>
+    <th>更新時刻</th>
+    <th></th>
   </tr>
 
-  {% for category in categoryList %}
+  {% for billListDetail in billList %}
 
   <tr>
-    <td>{{ category.id }}</td>
-    <td>{{ category.name }}</td>
-    <td>{{ category.order_num }}</td>
-    <td>
-      <a href="/category/detail/{{ category.id }}"><span class="glyphicon glyphicon-edit"></span> 編集</a>
-    </td>
+    <td>{{ billListDetail.id }}</td>
+    <td><a href="/bill/main/{{ billListDetail.id }}">{{ billListDetail.name }}</div></td>
+    <td>{{ billListDetail.uptime }}</td>
+    <td><a href="/bill/removeList/{{ billListDetail.id }}"><span class="glyphicon glyphicon-trash black"></span></a></td>
   </tr>
 
   {% endfor %}
-
-  <tr>
-    <td colspan="3"></td>
-    <td>
-      <a href="/category/append"><span class="glyphicon glyphicon-share"></span> 新規追加</a>
-    </td>
-  </tr>
 
 </table>
 
