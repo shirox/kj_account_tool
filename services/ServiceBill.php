@@ -23,7 +23,21 @@ class ServiceBill {
 
         try {
 
-            $billData = ModelBill::find();
+            $columns = [
+                "sum(left_amount) as sum_left_amount",
+                "sum(right_amount) as sum_right_amount",
+                "(select ModelCategory.name from ModelCategory where ModelCategory.id=category_id) as category_name",
+            ];
+
+            $billData = ModelBill::query()
+                      ->columns($columns)
+                      ->where("list_id = :billListId:")
+                      ->bind(["billListId" => $billListId])
+                      ->groupBy("category_id")
+                      ->execute();
+
+            $billListData = ModelBillList::findFirst($billListId);
+            $billData->listName = $billListData->name;
 
             return $billData;
 

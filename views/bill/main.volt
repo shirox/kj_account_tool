@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<h1>{{ billData.listName }}</h1>
+
 <table class="table">
 
   <tr>
@@ -19,9 +21,9 @@
   <tr>
     <td><a href="/bill/append"><span class="glyphicon glyphicon-share"></span>新規</a></td>
     <td><input type="number" name="leftAmount"></td>
-    <td>{{ bill.left_amount }}</td>
-    <td>{{ bill.name }}</td>
-    <td>{{ bill.right_amount }}</td>
+    <td>{{ bill.sum_left_amount }}</td>
+    <td>{{ bill.category_name }}</td>
+    <td>{{ bill.sum_right_amount }}</td>
     <td><input type="number" name="rightAmount"></td>
     <td><a href="/bill/append"><span class="glyphicon glyphicon-share"></span>新規</a></td>
   </tr>
