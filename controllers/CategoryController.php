@@ -46,7 +46,7 @@ class CategoryController extends BaseController {
     }
 
     public function appendAction(){
-
+        // For append form action.
     }
 
     public function appendnewAction(){

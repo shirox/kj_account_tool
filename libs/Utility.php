@@ -40,6 +40,7 @@ class Utility {
                 $volt->setOptions([
                     'compileAlways' => TEMPLATE_COMPILE_ALWAYS,
                 ]);
+                $volt->getCompiler()->addFunction('number_format','number_format');
                 return $volt;
             }
         ]);

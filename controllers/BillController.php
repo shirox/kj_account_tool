@@ -30,8 +30,10 @@ class BillController extends BaseController {
 
             $billListId = $this->dispatcher->getParam("number");
             $billData = $serviceBill->getData($billListId);
+            $billListData = $serviceBill->getListById($billListId);
 
             $this->view->billData = $billData;
+            $this->view->billListData = $billListData;
 
         } catch (Exception $e) {
 
@@ -39,6 +41,34 @@ class BillController extends BaseController {
 
             return $this->response->redirect('error');
         }
+    }
+
+    public function appendAction(){
+
+        try {
+
+            if (!$this->request->isPost()) {
+                throw new Exception("No post data included.");
+            }
+
+            $listId = $this->request->getPost("listId");
+
+            $registData = [
+                "list_id" => $listId,
+                "category_id" => $this->request->getPost("categoryId"),
+                "left_amount" => $this->request->getPost("leftAmount"),
+                "right_amount" => $this->request->getPost("rightAmount"),
+            ];
+
+            $serviceBill = new ServiceBill();
+            $serviceBill->append($registData);
+
+            return $this->response->redirect('bill/main/'.$listId);
+
+        } catch(Exeption $e) {
+
+        }
+
     }
 
 }

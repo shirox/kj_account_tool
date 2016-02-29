@@ -21,7 +21,7 @@ class Log{
             "stackTrace" => $stackTrace,
         ];
 
-        $logger->$level(json_encode($output));
+        $logger->$level(print_r($output, true));
 
     }
     

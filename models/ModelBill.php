@@ -4,7 +4,8 @@ class ModelBill extends \Phalcon\Mvc\Model {
 
     protected $id;
     protected $category_id;
-    protected $amount;
+    protected $left_amount;
+    protected $right_amount;
     protected $uptime;
 
     public function initialize(){
@@ -23,6 +24,17 @@ class ModelBill extends \Phalcon\Mvc\Model {
         return $this->id;
     }
 
+    public function setListId($listId){
+
+        $this->list_id = $listId;
+        return $this;
+    }
+
+    public function getListId(){
+
+        return $this->list_id;
+    }
+
     public function setCategoryId($id){
 
         $this->category_id = $id;
@@ -34,15 +46,26 @@ class ModelBill extends \Phalcon\Mvc\Model {
         return $this->category_id;
     }
 
-    public function setAmount($amount){
+    public function setLeftAmount($amount){
 
-        $this->amount = $amount;
+        $this->left_amount = $amount;
+        return $this;
+    }
+
+    public function getLeftAmount(){
+
+        return $this->left_amount;
+    }
+
+    public function setRightAmount($amount){
+
+        $this->right_amount = $amount;
         return $this;
     }
     
-    public function getAmount(){
+    public function getRightAmount(){
 
-        return $this->amount;
+        return $this->right_amount;
     }
 
     public function setUptime($uptime){

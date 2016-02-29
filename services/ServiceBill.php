@@ -19,11 +19,43 @@ class ServiceBill {
 
     }
 
+    public function getListById($billListId){
+
+        try {
+
+            $billListData = ModelBillList::findFirst($billListId);
+            $returnData->listId = $billListData->id;
+            $returnData->listName = $billListData->name;
+
+            return $returnData;
+
+        } catch (Exception $e) {
+
+            Log::output(LOG_LEVEL_CRITICAL, "Service bill getListById error.", $e);
+
+            throw new Exception();
+        }
+
+    }
+
     public function getData($billListId){
 
         try {
 
+            $categoryList = ModelCategory::query()
+                          ->columns(["id as category_id", "name as category_name"])
+                          ->where("status = :status:")
+                          ->bind(["status" => CATEGORY_STATUS_ON])
+                          ->execute();
+
+            foreach ($categoryList as $data) {
+                $data->sum_left_amount = 0;
+                $data->sum_right_amount = 0;
+                $returnData[$data->category_id] = $data;
+            }
+
             $columns = [
+                "category_id",
                 "sum(left_amount) as sum_left_amount",
                 "sum(right_amount) as sum_right_amount",
                 "(select ModelCategory.name from ModelCategory where ModelCategory.id=category_id) as category_name",
@@ -36,10 +68,11 @@ class ServiceBill {
                       ->groupBy("category_id")
                       ->execute();
 
-            $billListData = ModelBillList::findFirst($billListId);
-            $billData->listName = $billListData->name;
+            foreach ($billData as $data) {
+                $returnData[$data->category_id] = $data;
+            }
 
-            return $billData;
+            return $returnData;
 
         } catch (Exception $e) {
 
@@ -50,57 +83,24 @@ class ServiceBill {
 
     }
 
-    public function getListByCategoryId($categoryId, $offset, $limit){
+
+    public function append($registData){
 
         try {
 
-            $billList = ModelBill::find(/*categoryId offset limit*/);
-
-            return $billList;
-
-        } catch (Exception $e) {
-
-            Log::output(LOG_LEVEL_CRITICAL, "Service bill getListByCategoryId error.", $e);
-
-            throw new Exception();
-        }
-
-    }
-
-    public function getDetail($billListId){
-
-        try {
-
-            if (!is_numeric($billListId)) {
-                throw new Exception("Not integer given to billListId.");
+            $modelBill = (new ModelBill())
+                           ->setlistId($registData['list_id'])
+                           ->setCategoryId($registData['category_id']);
+            if (is_numeric($registData['left_amount'])) {
+                $modelBill->setLeftAmount($registData['left_amount']);
+            }
+            if (is_numeric($registData['right_amount'])) {
+                $modelBill->setRightAmount($registData['right_amount']);
             }
 
-            $param = [
-                "id = :billListId:",
-                "bind" => ["billListId" => $billListId],
-            ];
+            $modelBill->save();
 
-            return ModelBill::find($param);
-
-        } catch (Exception $e) {
-            
-            Log::output(LOG_LEVEL_CRITICAL, "Service bill list getDetail error.", $e);
-        }
-
-    }
-
-    public function append(){
-
-    }
-
-    public function appendCategory($registData){
-
-        try {
-
-            $modelCategory = (new ModelCategory())
-                           ->setName($registData['categoryName'])
-                           ->setOrderNum($registData['categoryOrderNum'])
-                           ->save();
+            return true;
 
         } catch(Exception $e) {
 

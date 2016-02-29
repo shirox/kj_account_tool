@@ -24,3 +24,7 @@ define("LOG_LEVEL_DEBUG", 'debug');
 
 // Contents
 define("PROJECT_NAME", "児島測量設計株式会社");
+
+// Status
+define("CATEGORY_STATUS_OFF", 0);
+define("CATEGORY_STATUS_ON",  1);
