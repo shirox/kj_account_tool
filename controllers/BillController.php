@@ -29,10 +29,12 @@ class BillController extends BaseController {
             $serviceBill = new ServiceBill();
 
             $billListId = $this->dispatcher->getParam("number");
-            $billData = $serviceBill->getData($billListId);
+            list($billData, $billLeftTotal, $billRightTotal) = $serviceBill->getData($billListId);
             $billListData = $serviceBill->getListById($billListId);
 
             $this->view->billData = $billData;
+            $this->view->billLeftTotal = $billLeftTotal;
+            $this->view->billRightTotal = $billRightTotal;
             $this->view->billListData = $billListData;
 
         } catch (Exception $e) {

@@ -39,6 +39,14 @@
 
   {% endfor %}
 
+  <tr>
+    <td style="border-bottom-style:hidden;border-left-style:hidden;"></td>
+    <td class="text-right">{{ number_format(billLeftTotal) }}</td>
+    <td class="text-center">合計</td>
+    <td class="text-right">{{ number_format(billRightTotal) }}</td>
+    <td style="border-bottom-style:hidden;border-right-style:hidden;"></td>
+  </tr>
+
 </table>
 
 {% endblock %}

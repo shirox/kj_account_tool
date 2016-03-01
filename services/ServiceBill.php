@@ -68,11 +68,15 @@ class ServiceBill {
                       ->groupBy("category_id")
                       ->execute();
 
+            $leftTotal = 0;
+            $rightTotal = 0;
             foreach ($billData as $data) {
                 $returnData[$data->category_id] = $data;
+                $leftTotal += $data->sum_left_amount;
+                $rightTotal += $data->sum_right_amount;
             }
 
-            return $returnData;
+            return [$returnData, $leftTotal, $rightTotal];
 
         } catch (Exception $e) {
 
