@@ -27,6 +27,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="/bill/list"><span class="glyphicon glyphicon-list"></span> 伝票一覧</a></li>
+            <li><a href="/bill/history"><span class="glyphicon glyphicon-list"></span> 伝票入力履歴</a></li>
             <li><a href="/category/list"><span class="glyphicon glyphicon-cog"></span> 勘定科目設定</a></li>
           </ul>
         </div><!--/.nav-collapse -->

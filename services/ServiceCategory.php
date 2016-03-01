@@ -6,7 +6,7 @@ class ServiceCategory {
 
         try {
 
-            return = ModelCategory::find();
+            return ModelCategory::find();
 
         } catch (Exception $e) {
 
