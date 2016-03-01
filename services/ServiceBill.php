@@ -76,7 +76,12 @@ class ServiceBill {
                 $rightTotal += $data->sum_right_amount;
             }
 
-            return [$returnData, $leftTotal, $rightTotal];
+            $isRed = "";
+            if ($leftTotal != $rightTotal) {
+                $isRed = "red";
+            }
+
+            return [$returnData, $leftTotal, $rightTotal, $isRed];
 
         } catch (Exception $e) {
 
