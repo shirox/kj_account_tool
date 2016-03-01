@@ -19,6 +19,15 @@
       <input type="number" class="form-control" id="inputOrderNum" name="categoryOrderNum" placeholder="1" value="1">
     </div>
   </div>
+  <div class="form-group">
+    <label for="inputStatus" class="col-sm-2 control-label">表示</label>
+    <div class="col-sm-2">
+      <select class="form-control" name="categoryStatus">
+        <option value="1">表示</option>
+        <option value="0">非表示</option>
+     </select>
+    </div>
+  </div>
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-4">

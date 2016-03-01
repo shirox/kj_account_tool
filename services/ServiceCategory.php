@@ -51,12 +51,31 @@ class ServiceCategory {
 
             $modelCategory = (new ModelCategory())
                            ->setName($registData['categoryName'])
+                           ->setStatus($registData['categoryStatus'])
                            ->setOrderNum($registData['categoryOrderNum'])
                            ->save();
 
         } catch(Exception $e) {
 
             Log::output(LOG_LEVEL_CRITICAL, "Service append category error.", $e);
+        }
+
+    }
+
+    public function updateCategory($registData){
+
+        try {
+
+            $modelCategory = (new ModelCategory())
+                           ->setId($registData['categoryId'])
+                           ->setName($registData['categoryName'])
+                           ->setStatus($registData['categoryStatus'])
+                           ->setOrderNum($registData['categoryOrderNum'])
+                           ->save();
+
+        } catch(Exception $e) {
+
+            Log::output(LOG_LEVEL_CRITICAL, "Service update category error.", $e);
         }
 
     }

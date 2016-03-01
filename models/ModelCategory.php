@@ -4,6 +4,7 @@ class ModelCategory extends \Phalcon\Mvc\Model {
 
     protected $id;
     protected $name;
+    protected $status;
     protected $order_num;
 
     public function initialize(){
@@ -31,6 +32,17 @@ class ModelCategory extends \Phalcon\Mvc\Model {
     public function getName(){
 
         return $this->name;
+    }
+
+    public function setStatus($status){
+
+        $this->status = $status;
+        return $this;
+    }
+
+    public function getStatus(){
+
+        return $this->status;
     }
 
     public function setOrderNum($num){

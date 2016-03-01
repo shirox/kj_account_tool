@@ -8,6 +8,7 @@
     <th>分類番号</th>
     <th>勘定科目名称</th>
     <th>表示優先度</th>
+    <th>表示</th>
     <th>項目操作</th>
   </tr>
 
@@ -17,6 +18,7 @@
     <td>{{ category.id }}</td>
     <td>{{ category.name }}</td>
     <td>{{ category.order_num }}</td>
+    <td>{% if category.status %}ON{% endif %}</td>
     <td>
       <a href="/category/detail/{{ category.id }}"><span class="glyphicon glyphicon-edit"></span> 編集</a>
     </td>
@@ -25,7 +27,7 @@
   {% endfor %}
 
   <tr>
-    <td colspan="3"></td>
+    <td colspan="4"></td>
     <td>
       <a href="/category/append"><span class="glyphicon glyphicon-share"></span> 新規追加</a>
     </td>
