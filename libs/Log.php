@@ -22,12 +22,10 @@ class Log{
         ];
 
         $logger->$level(print_r($output, true));
-
     }
     
     public static function debug($target){
 
         self::output(LOG_LEVEL_DEBUG, $target);
     }
-
 }

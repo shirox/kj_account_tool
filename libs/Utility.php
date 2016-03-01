@@ -24,7 +24,6 @@ class Utility {
             }
 
             sleep(CONNECT_TRY_SLEEP_SECONDS);
-
         }
 
         throw new PDOException("RDBMS Connection Timeout.");

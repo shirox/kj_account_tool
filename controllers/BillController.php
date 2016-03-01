@@ -3,6 +3,7 @@
 class BillController extends BaseController {
 
     public function indexAction(){
+
         return $this->response->redirect('bill/list');
     }
 
@@ -17,7 +18,6 @@ class BillController extends BaseController {
         } catch (Exception $e) {
             
             Log::output(LOG_LEVEL_CRITICAL, "Bill lists error.", $e);
-
             return $this->response->redirect('error');
         }
     }
@@ -41,7 +41,6 @@ class BillController extends BaseController {
         } catch (Exception $e) {
 
             Log::output(LOG_LEVEL_CRITICAL, "Get bill list data error.", $e);
-
             return $this->response->redirect('error');
         }
     }
@@ -70,6 +69,8 @@ class BillController extends BaseController {
 
         } catch(Exeption $e) {
 
+            Log::output(LOG_LEVEL_CRITICAL, "Append bill list data error.", $e);
+            return $this->response->redirect('error');
         }
 
     }

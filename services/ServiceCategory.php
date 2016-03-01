@@ -6,14 +6,11 @@ class ServiceCategory {
 
         try {
 
-            $categoryList = ModelCategory::find();
-
-            return $categoryList;
+            return = ModelCategory::find();
 
         } catch (Exception $e) {
 
             Log::output(LOG_LEVEL_CRITICAL, "Service category getListAll error.", $e);
-
             throw new Exception();
         }
 
@@ -37,8 +34,8 @@ class ServiceCategory {
         } catch (Exception $e) {
             
             Log::output(LOG_LEVEL_CRITICAL, "Service category getDetail error.", $e);
+            throw new Exception();
         }
-
     }
 
     public function append(){
@@ -58,8 +55,8 @@ class ServiceCategory {
         } catch(Exception $e) {
 
             Log::output(LOG_LEVEL_CRITICAL, "Service append category error.", $e);
+            throw new Exception();
         }
-
     }
 
     public function updateCategory($registData){
@@ -76,8 +73,7 @@ class ServiceCategory {
         } catch(Exception $e) {
 
             Log::output(LOG_LEVEL_CRITICAL, "Service update category error.", $e);
+            throw new Exception();
         }
-
     }
-
 }

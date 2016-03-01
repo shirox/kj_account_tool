@@ -3,6 +3,7 @@
 class CategoryController extends BaseController {
 
     public function indexAction(){
+
         return $this->response->redirect('category/list');
     }
 
@@ -11,7 +12,6 @@ class CategoryController extends BaseController {
         try {
 
             $serviceCategory = new ServiceCategory();
-        
             $categoryList = $serviceCategory->getListAll();
 
             $this->view->categoryList = $categoryList;
@@ -19,7 +19,6 @@ class CategoryController extends BaseController {
         } catch (Exception $e) {
             
             Log::output(LOG_LEVEL_CRITICAL, "Category list error.", $e);
-
             return $this->response->redirect('error');
         }
     }
@@ -29,7 +28,6 @@ class CategoryController extends BaseController {
         try {
         
             $serviceCategory = new ServiceCategory();
-
             $categoryId = $this->dispatcher->getParam("number");
 
             $categoryData= $serviceCategory->getDetail($categoryId);
@@ -39,10 +37,8 @@ class CategoryController extends BaseController {
         } catch(Exception $e) {
 
             Log::output(LOG_LEVEL_CRITICAL, "Category detail error.", $e);
-
             return $this->response->redirect('error');
         }
-
     }
 
     public function appendAction(){
@@ -99,9 +95,7 @@ class CategoryController extends BaseController {
         } catch(Exception $e) {
 
             Log::output(LOG_LEVEL_CRITICAL, "Category update error.", $e);
-
             return $this->response->redirect('error');
         }
     }
-
 }

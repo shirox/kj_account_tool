@@ -6,17 +6,13 @@ class ServiceBill {
 
         try {
 
-            $billList = ModelBillList::find();
-
-            return $billList;
+            return ModelBillList::find();
 
         } catch (Exception $e) {
 
             Log::output(LOG_LEVEL_CRITICAL, "Service bill getList error.", $e);
-
             throw new Exception();
         }
-
     }
 
     public function getListById($billListId){
@@ -32,10 +28,8 @@ class ServiceBill {
         } catch (Exception $e) {
 
             Log::output(LOG_LEVEL_CRITICAL, "Service bill getListById error.", $e);
-
             throw new Exception();
         }
-
     }
 
     public function getData($billListId){
@@ -58,7 +52,7 @@ class ServiceBill {
                 "category_id",
                 "sum(left_amount) as sum_left_amount",
                 "sum(right_amount) as sum_right_amount",
-                "(select ModelCategory.name from ModelCategory where ModelCategory.id=category_id) as category_name",
+                "(select ModelCategory.name from ModelCategory where ModelCategory.id=category_id and ModelCategory.status=".CATEGORY_STATUS_ON.") as category_name",
             ];
 
             $billData = ModelBill::query()
@@ -71,6 +65,9 @@ class ServiceBill {
             $leftTotal = 0;
             $rightTotal = 0;
             foreach ($billData as $data) {
+                if (empty($data->category_name)) {
+                    continue;
+                }
                 $returnData[$data->category_id] = $data;
                 $leftTotal += $data->sum_left_amount;
                 $rightTotal += $data->sum_right_amount;
@@ -86,12 +83,9 @@ class ServiceBill {
         } catch (Exception $e) {
 
             Log::output(LOG_LEVEL_CRITICAL, "Service bill get data error.", $e);
-
             throw new Exception();
         }
-
     }
-
 
     public function append($registData){
 
@@ -100,13 +94,13 @@ class ServiceBill {
             $modelBill = (new ModelBill())
                            ->setlistId($registData['list_id'])
                            ->setCategoryId($registData['category_id']);
+
             if (is_numeric($registData['left_amount'])) {
                 $modelBill->setLeftAmount($registData['left_amount']);
             }
             if (is_numeric($registData['right_amount'])) {
                 $modelBill->setRightAmount($registData['right_amount']);
             }
-
             $modelBill->save();
 
             return true;
@@ -114,8 +108,7 @@ class ServiceBill {
         } catch(Exception $e) {
 
             Log::output(LOG_LEVEL_CRITICAL, "Service append category error.", $e);
+            throw new Exception();
         }
-
     }
-
 }
