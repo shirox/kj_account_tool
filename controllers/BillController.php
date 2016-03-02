@@ -90,5 +90,23 @@ class BillController extends BaseController {
         }
     }
 
+    public function deleteAction(){
+
+        try {
+
+            $billId = $this->dispatcher->getParam("number");
+
+            $serviceBill = new ServiceBill();
+            $serviceBill->deleteBill($billId);
+
+            return $this->response->redirect('bill/history');
+
+        } catch (Exception $e) {
+
+            Log::output(LOG_LEVEL_CRITICAL, "Bill history lists error.", $e);
+            return $this->response->redirect('error');
+        }
+    }
+
 
 }

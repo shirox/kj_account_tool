@@ -140,4 +140,18 @@ class ServiceBill {
         }
     }
 
+    public function deleteBill($billId){
+
+        try {
+
+            return (new ModelBill)->find($billId)->delete();
+
+        } catch (Exception $e) {
+
+            Log::output(LOG_LEVEL_CRITICAL, "Service bill delete error.", $e);
+            throw new Exception();
+        }
+    }
+
+
 }
