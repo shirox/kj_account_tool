@@ -37,7 +37,7 @@ class ServiceBill {
         try {
 
             $categoryList = ModelCategory::query()
-                          ->columns(["id as category_id", "name as category_name"])
+                          ->columns(["id AS category_id", "name AS category_name"])
                           ->where("status = :status:")
                           ->bind(["status" => CATEGORY_STATUS_ON])
                           ->execute();
@@ -50,9 +50,9 @@ class ServiceBill {
 
             $columns = [
                 "category_id",
-                "sum(left_amount) as sum_left_amount",
-                "sum(right_amount) as sum_right_amount",
-                "(select ModelCategory.name from ModelCategory where ModelCategory.id=category_id and ModelCategory.status=".CATEGORY_STATUS_ON.") as category_name",
+                "SUM(left_amount) as sum_left_amount",
+                "SUM(right_amount) as sum_right_amount",
+                "(SELECT ModelCategory.name FROM ModelCategory WHERE ModelCategory.id=category_id AND ModelCategory.status=".CATEGORY_STATUS_ON.") AS category_name",
             ];
 
             $billData = ModelBill::query()
@@ -123,12 +123,13 @@ class ServiceBill {
                 "left_amount",
                 "right_amount",
                 "uptime",
-                "(select ModelCategory.name from ModelCategory where ModelCategory.id=category_id) as category_name",
-                "(select ModelBillList.name from ModelBillList where ModelBillList.id=list_id) as list_name",
+                "(SELECT ModelCategory.name FROM ModelCategory WHERE ModelCategory.id=category_id) AS category_name",
+                "(SELECT ModelBillList.name FROM ModelBillList WHERE ModelBillList.id=list_id) AS list_name",
             ];
 
             $billData = ModelBill::query()
                       ->columns($columns)
+                      ->orderBy("id DESC")
                       ->execute();
 
             return $billData;
