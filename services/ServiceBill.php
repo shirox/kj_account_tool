@@ -111,4 +111,33 @@ class ServiceBill {
             throw new Exception();
         }
     }
+
+    public function getHistory(){
+
+        try {
+
+            $columns = [
+                "id",
+                "list_id",
+                "category_id",
+                "left_amount",
+                "right_amount",
+                "uptime",
+                "(select ModelCategory.name from ModelCategory where ModelCategory.id=category_id) as category_name",
+                "(select ModelBillList.name from ModelBillList where ModelBillList.id=list_id) as list_name",
+            ];
+
+            $billData = ModelBill::query()
+                      ->columns($columns)
+                      ->execute();
+
+            return $billData;
+
+        } catch (Exception $e) {
+
+            Log::output(LOG_LEVEL_CRITICAL, "Service bill get data error.", $e);
+            throw new Exception();
+        }
+    }
+
 }

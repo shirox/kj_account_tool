@@ -75,4 +75,20 @@ class BillController extends BaseController {
 
     }
 
+    public function historyAction(){
+
+        try {
+
+            $serviceBill = new ServiceBill();
+            $billList = $serviceBill->getHistory();
+            $this->view->billList = $billList;
+
+        } catch (Exception $e) {
+
+            Log::output(LOG_LEVEL_CRITICAL, "Bill history lists error.", $e);
+            return $this->response->redirect('error');
+        }
+    }
+
+
 }
