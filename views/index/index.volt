@@ -1,7 +1,21 @@
 {% extends "layout.volt" %}
 {% block content %}
       <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <h1>伝票ツール</h1>
+	<ul>
+	<li>伝票一覧</li>
+		<ul>
+		<li>伝票入力確認ができます。</li>
+		</ul>
+	<li>伝票入力履歴</li>
+		<ul>
+		<li>伝票入力履歴を確認・削除ができます</li>
+		</ul>
+	<li>勘定科目設定
+		<ul>
+		<li>勘定科目の追加・編集・ON/OFF切り替えができます</li>
+		</ul>
+	</li>
+	</ul>
       </div>
 {% endblock %}

@@ -28,3 +28,6 @@ define("PROJECT_NAME", "児島測量設計株式会社");
 // Status
 define("CATEGORY_STATUS_OFF", 0);
 define("CATEGORY_STATUS_ON",  1);
+
+// Parameter defaults.
+define("DEFAULT_LIST_NAME",  "%d年%d月%d日 %d時作成分");

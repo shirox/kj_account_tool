@@ -5,9 +5,10 @@
 <table class="table">
 
   <tr>
-    <th>リスト番号</th>
-    <th>名称</th>
-    <th>更新時刻</th>
+    <th class="col-sm-1">リスト番号</th>
+    <th class="col-sm-4">名称</th>
+    <th class="col-sm-2">作成日時</th>
+    <th class="col-sm-1"></th>
   </tr>
 
   {% for billListDetail in billList %}
@@ -16,9 +17,15 @@
     <td>{{ billListDetail.id }}</td>
     <td><a href="/bill/main/{{ billListDetail.id }}">{{ billListDetail.name }}</div></td>
     <td>{{ billListDetail.uptime }}</td>
+    <td><a href="/list/detail/{{ category.id }}"><span class="glyphicon glyphicon-edit"></span> 編集</a></td>
   </tr>
 
   {% endfor %}
+
+  <tr>
+    <td colspan="3"></td>
+    <td><a href="/bill/listAppend"><span class="glyphicon glyphicon-edit"></span> 新規</a></td>
+  </tr>
 
 </table>
 

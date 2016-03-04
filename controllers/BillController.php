@@ -108,5 +108,21 @@ class BillController extends BaseController {
         }
     }
 
+    public function listAppendAction(){
+
+        try {
+
+            $serviceBill = new ServiceBill();
+            $serviceBill->appendList();
+
+            return $this->response->redirect('bill/list');
+
+        } catch(Exeption $e) {
+
+            Log::output(LOG_LEVEL_CRITICAL, "Append bill list error.", $e);
+            return $this->response->redirect('error');
+        }
+
+    }
 
 }

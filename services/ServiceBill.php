@@ -6,7 +6,7 @@ class ServiceBill {
 
         try {
 
-            return ModelBillList::find();
+            return ModelBillList::find(["order" => "id DESC"]);
 
         } catch (Exception $e) {
 
@@ -129,7 +129,7 @@ class ServiceBill {
 
             $billData = ModelBill::query()
                       ->columns($columns)
-                      ->orderBy("id DESC")
+                      ->orderBy("uptime DESC")
                       ->execute();
 
             return $billData;
@@ -154,5 +154,24 @@ class ServiceBill {
         }
     }
 
+    public function appendList(){
+
+        try {
+
+            return (new ModelBillList())
+                       ->setName($this->createDefaultListName())
+                       ->save();
+
+        } catch(Exception $e) {
+
+            Log::output(LOG_LEVEL_CRITICAL, "Service append category error.", $e);
+            throw new Exception();
+        }
+    }
+
+    public function createDefaultListName(){
+        list($year, $month, $day, $hour) = explode(",",date("Y,m,d,H"));
+        return sprintf(DEFAULT_LIST_NAME, $year, $month, $day, $hour);
+    }
 
 }
