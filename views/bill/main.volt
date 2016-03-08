@@ -20,7 +20,6 @@
     	<form class="form-inline" action="/bill/append" method="post">
 	<input type="hidden" name="listId" value="{{ billListData.listId }}">
 	<input type="hidden" name="categoryId" value="{{ bill.category_id }}">
-	<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-share"></span> 更新</button>
     	<input class="form-control input-sm" type="text" name="leftAmount">
 	</form>
     </td>
@@ -32,7 +31,6 @@
 	<input type="hidden" name="listId" value="{{ billListData.listId }}">
 	<input type="hidden" name="categoryId" value="{{ bill.category_id }}">
     	<input class="form-control input-sm" type="text" name="rightAmount">
-	<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-share"></span> 更新</button>
 	</form>
     </td>
   </tr>

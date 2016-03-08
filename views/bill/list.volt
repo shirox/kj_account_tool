@@ -17,7 +17,7 @@
     <td>{{ billListDetail.id }}</td>
     <td><a href="/bill/main/{{ billListDetail.id }}">{{ billListDetail.name }}</div></td>
     <td>{{ billListDetail.uptime }}</td>
-    <td><a href="/list/detail/{{ category.id }}"><span class="glyphicon glyphicon-edit"></span> 編集</a></td>
+    <td><a href="/bill/listDetail/{{ billListDetail.id }}"><span class="glyphicon glyphicon-edit"></span> 編集</a></td>
   </tr>
 
   {% endfor %}

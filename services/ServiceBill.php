@@ -169,6 +169,36 @@ class ServiceBill {
         }
     }
 
+    public function updateList($registData){
+
+        try {
+
+            return (new ModelBillList())
+                       ->setId($registData['id'])
+                       ->setName($registData['name'])
+                       ->save();
+
+        } catch(Exception $e) {
+
+            Log::output(LOG_LEVEL_CRITICAL, "Service update bill list error.", $e);
+            throw new Exception();
+        }
+    }
+
+    public function listDetailBill($billListId){
+
+        try {
+
+            return ModelBillList::findFirst($billListId);
+
+        } catch (Exception $e) {
+
+            Log::output(LOG_LEVEL_CRITICAL, "Service bill list detail error.", $e);
+            throw new Exception();
+        }
+    }
+
+
     public function createDefaultListName(){
         list($year, $month, $day, $hour) = explode(",",date("Y,m,d,H"));
         return sprintf(DEFAULT_LIST_NAME, $year, $month, $day, $hour);

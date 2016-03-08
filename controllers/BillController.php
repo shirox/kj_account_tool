@@ -125,4 +125,46 @@ class BillController extends BaseController {
 
     }
 
+    public function listDetailAction(){
+
+        try {
+
+            $serviceBill = new ServiceBill();
+            $billListId = $this->dispatcher->getParam("number");
+
+            $this->view->billListData = $serviceBill->listDetailBill($billListId);
+
+        } catch(Exception $e) {
+
+            Log::output(LOG_LEVEL_CRITICAL, "Category detail error.", $e);
+            return $this->response->redirect('error');
+        }
+    }
+
+    public function listUpdateAction(){
+
+        try {
+
+            if (!$this->request->isPost()) {
+                throw new Exception("No post data included.");
+            }
+
+            $registData = [
+                "id" => $this->request->getPost("billListId"),
+                "name" => $this->request->getPost("listName"),
+            ];
+
+            $serviceBill = new ServiceBill();
+            $serviceBill->updateList($registData);
+
+            return $this->response->redirect('bill/list');
+
+        } catch(Exeption $e) {
+
+            Log::output(LOG_LEVEL_CRITICAL, "Bill list update error.", $e);
+            return $this->response->redirect('error');
+        }
+
+    }
+
 }
