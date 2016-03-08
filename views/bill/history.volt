@@ -23,7 +23,7 @@
     <td class="text-right">{{ number_format(bill.left_amount) }}</td>
     <td class="text-right">{{ number_format(bill.right_amount) }}</td>
     <td class="text-center">{{ bill.uptime }}</td>
-    <td class="text-right"><a href="/bill/delete/{{ bill.id }}"><span class="glyphicon glyphicon-trash"></span></a></td>
+    <td class="text-right"><a href="/bill/delete/{{ bill.id }}" onclick="if(!confirm('本当に削除しますか？')){return false}"><span class="glyphicon glyphicon-trash"></span></a></td>
   </tr>
 
   {% endfor %}
