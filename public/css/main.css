@@ -15,3 +15,12 @@
 .black{
     color:black;
 }
+
+.small-cell{
+    font-size:10px;
+}
+
+.small-cell tr td,
+.small-cell tr th{
+    border: 1px solid gray;
+}
