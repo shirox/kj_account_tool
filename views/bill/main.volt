@@ -14,7 +14,7 @@
     <td class="text-right">
         <input class="form-control input-sm {{ isRed }}" type="text" value="{{ number_format(billLeftTotal) }}" style="text-align:right">
     </td>
-    <td class="text-center">合計</td>
+    <th class="text-center" style="background-color:">合計</th>
     <td class="text-right">
         <input class="form-control input-sm {{ isRed }}" type="text" value="{{ number_format(billRightTotal) }}" style="text-align:right">
     </td>
